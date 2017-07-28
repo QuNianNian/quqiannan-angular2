@@ -8,7 +8,9 @@ import { FormsModule } from '@angular/forms';
 //angular.cn
 //typscriptlang.org
 // github 里bug详细描述 git\angular\angular
-
+// ng g pip pipname 快速生成管道
+//ng g component students-list --module students
+// <a routerLink="/cc/{{}}">
 @NgModule({
   declarations: [
     //里面放有关系的指令，controller,service的声明父子关系是根据dom树判断的
