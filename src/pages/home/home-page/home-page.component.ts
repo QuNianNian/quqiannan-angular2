@@ -1,5 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+// fillter
+// import { Pipe,}
+// angular.io
+//angular.cn
+//typscriptlang.org
+// github 里bug详细描述 git\angular\angular
+
+@NgModule({
+  declarations: [
+    //里面放有关系的指令，controller,service的声明父子关系是根据dom树判断的
+  ]
+})
 
 @Component({
   selector: 'app-home-page',
@@ -37,7 +51,11 @@ export class HomePageComponent implements OnInit {
       "exam3":76}
   ]
 
+  searchName: string = ''
 
+  searchFlag: boolean = false
+
+  searchArray:Array<any> = []
 
 deleteLast(){
   this.users.pop()

@@ -3,7 +3,15 @@
 <button (click)="sortByRadom()">随机打乱</button>
 <button (click)="deleteLast()">删除最后一个</button>
 <button (click)="saveNewUser()">新增一个</button>
+<br>
+<br>
+<!--双向绑定：输入是[]输出是（）字符串自带search方法 -->
+<button>搜索</button><input [(ngModel)]="searchName" placeholder="请输入用户名" class="inputMargin"/>
+<br>
+<br>
 <table>
+  <!--[收] = “出”-->
+  <!--（传出方法）= “geifunction（参数）”-->
   <tbody>
     <tr>
       <th>ID </th>
@@ -16,8 +24,20 @@
       <th>exam3 </th>
     </tr>
   </tbody>
-  <tbody>
+  <tbody *ngIf="!searchFlag">
     <tr *ngFor="let user of users">
+      <td>{{user.index}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.sex}}</td>
+      <td>{{user.name_en}} </td>
+      <td><a target="_blank" href="http://github.com/{{user.github}}">{{user.github}}</a></td>
+      <td>{{user.exam1}}</td>
+      <td>{{user.exam2}}</td>
+      <td>{{user.exam3}}</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="searchFlag">
+    <tr *ngFor="let user of searchArray">
       <td>{{user.index}}</td>
       <td>{{user.name}}</td>
       <td>{{user.sex}}</td>

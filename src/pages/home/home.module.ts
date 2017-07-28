@@ -10,6 +10,8 @@ import { HomePageComponent } from './home-page/home-page.component';
       { path: '', component: HomePageComponent, pathMatch: 'full' }
     ])
   ],
-  declarations: [HomePageComponent]
+  declarations: [HomePageComponent],
+  //服务声明
+  providers:[]
 })
 export class HomeModule { }
