@@ -15,7 +15,9 @@ import { PokemonService } from './pokemon.service';
     FormsModule,
     RouterModule.forChild([
       { path: '', component: PokemonListComponent, pathMatch: 'full' },
-      { path: 'pokemoninfo/:id', component: PokemonInfoComponent, pathMatch: 'full'}
+      // http://localhost:4200/pokemoninfo/id
+      { path: 'pokemoninfo/:id', component: PokemonInfoComponent, pathMatch: 'full'},
+      { path: 'pokemonedit/:id', component: PokemonEditComponent, pathMatch: 'full'}
     ]),
   ],
   declarations: [PokemonListComponent, PokemonInfoComponent, PokemonEditComponent],

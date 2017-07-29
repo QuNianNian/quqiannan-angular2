@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 
+import { Observable } from 'rxjs/Observable';
+
+import { Http } from "@angular/http"
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -47,7 +51,9 @@ export class PokemonListComponent implements OnInit {
   }
 
   deletePokemon(pokemon){
-    this.pokemonList.splice(this.pokemonList.indexOf(pokemon),1);
+    this.poService.deletePokemonById(pokemon.objectId).subscribe(data=>{
+      this.pokemonList.splice(this.pokemonList.indexOf(data),1);
+    })
   }
 
   attributesSelect(){
@@ -72,8 +78,13 @@ export class PokemonListComponent implements OnInit {
   }
 
 
-  constructor(private poService: PokemonService) {
-    this.pokemonList = poService.getPokemons();
+  constructor(private poService: PokemonService, private http:Http) {
+
+    this.poService.getPokemonsbyUrl().subscribe(data=>{
+      console.log('*********');
+      console.log(data);
+      this.pokemonList = data;
+    });
 
     this.attributesList = poService.getattributesList();
    }

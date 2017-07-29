@@ -3,6 +3,8 @@ import { PokemonService } from '../pokemon.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
+import { Http } from "@angular/http"
+
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
@@ -11,6 +13,13 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class PokemonInfoComponent implements OnInit {
 
   infoPokemon:any = null;
+
+  pokemonInfo:any = {
+          "index": null,
+          "name": null,
+          "romIndex": null,
+          "attributes": null
+        };;
 
   getStudentSubscribe:any;
 
@@ -33,16 +42,19 @@ export class PokemonInfoComponent implements OnInit {
  ngOnInit() { 
      this.getStudentSubscribe = this.route.params.subscribe(params=>{ 
        this.infoPokemon = params['id'];
+
+       this.poService.getPokemonbyIndex(this.infoPokemon).subscribe(data=>{
+          console.log('*********');
+          console.log(data);
+          this.pokemonInfo = data;
+        });
      })
    } 
 
 
 
-  constructor(
-    private poService: PokemonService,
-  private route: ActivatedRoute, 
-private location: Location 
-) { 
+  constructor( private poService: PokemonService, private route: ActivatedRoute, 
+              private location: Location, private http:Http ) { 
     
   }
 
